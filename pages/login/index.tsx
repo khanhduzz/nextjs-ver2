@@ -17,7 +17,7 @@ const Login = () => {
     try {
 
       console.log(JSON.stringify({ username, password }));
-      
+
       const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: {
@@ -29,6 +29,7 @@ const Login = () => {
       const data = await response.json();
 
       if (response.status === 200 && data.isAuthenticated) {
+        sessionStorage.setItem("user", JSON.stringify({ username, password }));
         console.log("Data in page: ", data);
         window.location.href = "/";
         // router.push("/");

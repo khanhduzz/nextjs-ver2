@@ -1,5 +1,5 @@
 import { AuthenticationModal } from "@/modules/authentication/models/AuthenticationModel";
-import { currentAuth, UserInformation } from "@/modules/authentication/models/UserInformation";
+import { UserInformation } from "@/modules/authentication/models/UserInformation";
 import { NextApiRequest, NextApiResponse } from "next";
 
 const validateUser = async (username: string, password: string) => {
@@ -33,8 +33,6 @@ export default async function login(
         );
 
         if (isValid) {
-          currentAuth.push(loginInfo);
-          
           return res.status(200).json({
             message: "Login successful",
             isAuthenticated: true,

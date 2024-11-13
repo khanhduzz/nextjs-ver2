@@ -2,13 +2,13 @@ import Link from "next/link";
 import router from "next/router";
 import { useEffect, useState } from "react";
 
-type AuthenticateUSer = {
+type AuthenticateUser = {
     username: string;
 }
 
 type AuthenticateInformationDto = {
     isAuthenticated: boolean;
-    user: AuthenticateUSer;
+    user: AuthenticateUser;
 }
 
 const AuthenticationInformation = () => {
@@ -17,17 +17,28 @@ const AuthenticationInformation = () => {
         user: { username: '' }
     })
 
-    async function getAuthenticationInformation(): Promise<AuthenticateInformationDto> {
-        const response = await fetch('/api/auth');
+    async function getAuthenticationInformationFromApi(userInfo: AuthenticateUser): Promise<AuthenticateInformationDto> {
+        const response = await fetch("/api/auth", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(userInfo)
+        });
         return await response.json();
     }
 
     useEffect(() => {
-        getAuthenticationInformation().then((data) => {
-            console.log("data ", data);
-            setAuthenticateDto(data);
-            
-        });
+        const storedUser = sessionStorage.getItem("user");
+        console.log("Store user: ", storedUser);
+        
+        if (storedUser) {
+            const user = JSON.parse(storedUser);
+            getAuthenticationInformationFromApi(user).then((data) => {
+                console.log("Authentication data:", data);
+                setAuthenticateDto(data);
+            });
+        }
     }, []);
 
     const handleLogout = async () => {
@@ -37,6 +48,7 @@ const AuthenticationInformation = () => {
             });
             if (response.status === 200) {
                 setAuthenticateDto({ isAuthenticated: false, user: { username: "" } });
+                sessionStorage.removeItem("user")
                 router.push("/");
             } else {
                 console.error("Error logging out");
