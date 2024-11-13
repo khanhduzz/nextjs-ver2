@@ -1,7 +1,7 @@
 import { PostPagination, posts } from "@/modules/posts/PostPagination";
 import { NextApiRequest, NextApiResponse } from "next";
 
-const POSTS_PER_PAGE = 10;
+const POSTS_PER_PAGE = 20;
 
 export default function handler(
   req: NextApiRequest,

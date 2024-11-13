@@ -45,14 +45,22 @@ export default function Home(initialPosts : HomeProps) {
           <div className="bricks-wrapper">
             <div className="grid-sizer"></div>
             <Slides />
-            <StandardArticle />
-            <AudioArticle />
-            <QuoteArticle />
-            <GalleryArticle />
-            <FormatLinkArticle />
-            <FormatVideoArticle />
-            {posts.data?.map((d: MainArticle, index: number) => (
-              <Article key={index} {...d} />
+            {/* <StandardArticle /> */}
+            {posts.data?.map((article: MainArticle, index: number) => (
+              article.type === 'standard' ? (
+                <Article key={index} {...article} />
+              ) : article.type === 'audio' ? (
+                <AudioArticle key={index} {...article} />
+              ) : article.type === 'link' ? (
+                <FormatLinkArticle key={index} {...article} />
+              ) : article.type === 'video' ? (
+                <FormatVideoArticle key={index} {...article} />
+              ) : article.type === 'gallery' ? (
+                <GalleryArticle key={index} {...article} />
+              ) : article.type === 'quote' ? (
+                <QuoteArticle key={index} {...article} />
+              )
+              : null
             ))}
           </div>
         </div>

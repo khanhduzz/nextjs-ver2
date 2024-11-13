@@ -1,32 +1,33 @@
-import React from 'react'
-
-import audioImage1 from '@/common/images/thumbs/concert.jpg';
+import { MainArticle } from '@/modules/posts/PostPagination';
 import Link from 'next/link';
 
-const AudioArticle = () => {
+const AudioArticle = (article: MainArticle) => {
     return (
         <>
             <article className="brick entry format-audio animate-this">
                 <div className="entry-thumb">
-                    <Link href="audio/1" className="thumb-link">
-                        <img src={audioImage1.src} alt="concert" />
+                    <Link href={`/audio/${article.articleId}`} className="thumb-link">
+                        {article.imageUrl?.map((image, index) => (
+                            <img key={index} src={image} alt={article.imageName} />
+                        ))}
                     </Link>
                     <div className="audio-wrap">
-                        <audio id="player" src="/media/AirReview-Landmarks-02-ChasingCorporate.mp3" controls></audio>
+                        <audio id="player" src={article.mediaUrl} controls></audio>
                     </div>
                 </div>
                 <div className="entry-text">
                     <div className="entry-header">
                         <div className="entry-meta">
                             <span className="cat-links">
-                                <a href="#">Design</a>
-                                <a href="#">Music</a>
+                                {article.articleCategories?.map((link, index) => (
+                                    <a key={index} href={link.link ?? '#'}>{link.title}</a>
+                                ))}
                             </span>
                         </div>
-                        <h1 className="entry-title"><a href="single-audio.html">This Is a Audio Format Post.</a></h1>
+                        <h1 className="entry-title"><a href="single-audio.html">{article.name}</a></h1>
                     </div>
                     <div className="entry-excerpt">
-                        Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo est ad minim elit reprehenderit nisi officia aute incididunt velit sint in aliqua cillum in consequat consequat in culpa in anim.
+                        {article.description}
                     </div>
                 </div>
             </article>

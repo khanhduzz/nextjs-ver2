@@ -1,13 +1,13 @@
-import React from 'react'
+import { MainArticle } from "@/modules/posts/PostPagination"
 
-const QuoteArticle = () => {
+const QuoteArticle = (article: MainArticle) => {
     return (
         <>
             <article className="brick entry format-quote animate-this" >
                 <div className="entry-thumb">
                     <blockquote>
-                        <p>Good design is making something intelligible and memorable. Great design is making something memorable and meaningful.</p>
-                        <cite>Dieter Rams</cite>
+                        <p>{article.description}</p>
+                        <cite>{article.name}</cite>
                     </blockquote>
                 </div>
             </article>

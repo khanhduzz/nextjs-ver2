@@ -16,12 +16,12 @@ const Article = (article: MainArticle) => {
                     <div className="entry-header">
                         <div className="entry-meta">
                             <span className="cat-links">
-                                {article.articleCategories.map((link, index) => (
+                                {article.articleCategories?.map((link, index) => (
                                     <a key={index} href={link.link ?? '#'}>{link.title}</a>
                                 ))}
                             </span>
                         </div>
-                        <h1 className="entry-title"><a href="single-standard.html">{article.name}</a></h1>
+                        <h1 className="entry-title"><a href={`/standard/${article.articleId}`}>{article.name}</a></h1>
                     </div>
                     <div className="entry-excerpt">
                         {article.description}

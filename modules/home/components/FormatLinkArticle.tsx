@@ -1,14 +1,14 @@
-import React from 'react'
+import { MainArticle } from '@/modules/posts/PostPagination'
 
-const FormatLinkArticle = () => {
+const FormatLinkArticle = (article: MainArticle) => {
     return (
         <>
             <article className="brick entry format-link animate-this">
                 <div className="entry-thumb">
                     <div className="link-wrap">
-                        <p>Looking for affordable &amp; reliable web hosting? We recommend Dreamhost.</p>
+                        <p>{article.name}</p>
                         <cite>
-                            <a target="_blank" href="http://www.dreamhost.com/r.cgi?287326">http://www.dreamhost.com</a>
+                            <a target="_blank" href={article.mediaUrl}>{article.description}</a>
                         </cite>
                     </div>
                 </div>
