@@ -17,29 +17,44 @@ const AuthenticationInformation = () => {
         user: { username: '' }
     })
 
-    async function getAuthenticationInformationFromApi(userInfo: AuthenticateUser): Promise<AuthenticateInformationDto> {
-        const response = await fetch("/api/auth", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(userInfo)
-        });
+    async function getAuthenticationInformation(): Promise<AuthenticateInformationDto> {
+        const response = await fetch('/api/auth',
+            { method: "GET", credentials: 'include' }
+        );
         return await response.json();
     }
 
     useEffect(() => {
-        const storedUser = sessionStorage.getItem("user");
-        console.log("Store user: ", storedUser);
-        
-        if (storedUser) {
-            const user = JSON.parse(storedUser);
-            getAuthenticationInformationFromApi(user).then((data) => {
-                console.log("Authentication data:", data);
-                setAuthenticateDto(data);
-            });
-        }
+        getAuthenticationInformation().then((data) => {
+            console.log("data ", data);
+            setAuthenticateDto(data);
+
+        });
     }, []);
+
+    // async function getAuthenticationInformationFromApi(userInfo: AuthenticateUser): Promise<AuthenticateInformationDto> {
+    //     const response = await fetch("/api/auth", {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json"
+    //         },
+    //         body: JSON.stringify(userInfo)
+    //     });
+    //     return await response.json();
+    // }
+
+    // useEffect(() => {
+    //     const storedUser = sessionStorage.getItem("user");
+    //     console.log("Store user: ", storedUser);
+
+    //     if (storedUser) {
+    //         const user = JSON.parse(storedUser);
+    //         getAuthenticationInformationFromApi(user).then((data) => {
+    //             console.log("Authentication data:", data);
+    //             setAuthenticateDto(data);
+    //         });
+    //     }
+    // }, []);
 
     const handleLogout = async () => {
         try {

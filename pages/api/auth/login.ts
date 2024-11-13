@@ -1,6 +1,7 @@
 import { AuthenticationModal } from "@/modules/authentication/models/AuthenticationModel";
 import { UserInformation } from "@/modules/authentication/models/UserInformation";
 import { NextApiRequest, NextApiResponse } from "next";
+import { serialize } from 'cookie'
 
 const validateUser = async (username: string, password: string) => {
   const mockUser = {
@@ -33,6 +34,14 @@ export default async function login(
         );
 
         if (isValid) {
+          const cookie = serialize('session', JSON.stringify(loginInfo), {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            maxAge: 60 * 60 * 24 * 7,
+            path: '/',
+          })
+          res.setHeader('Set-Cookie', cookie)
+          
           return res.status(200).json({
             message: "Login successful",
             isAuthenticated: true,

@@ -1,8 +1,10 @@
-import { contacts } from "../models/Contact"
+import { ContactDTO } from "../models/Contact"
 
-const AdminContacts = () => {
-    console.log("Admin contact: ", contacts);
-    
+type AdminContactsProps = {
+    contacts: ContactDTO[];
+  };
+
+const AdminContacts = (contacts : AdminContactsProps) => {
     return (
         <>
             <article className="brick entry format-standard animate-this">
@@ -16,7 +18,7 @@ const AdminContacts = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {contacts.map((contact, index) => (
+                        {contacts.contacts.map((contact, index) => (
                             <tr key={index}>
                                 <td>{contact.cName}</td>
                                 <td>{contact.cEmail}</td>

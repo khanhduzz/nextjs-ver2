@@ -35,15 +35,20 @@ const ContactForm = () => {
             if (response.ok) {
                 setNotification({ message: 'Form submitted successfully', type: 'success' });
                 console.log('Form submitted successfully');
-                let x : ContactDTO = {
+                let contact: ContactDTO = {
                     cName: formData.cName,
-                    cEmail: formData.cEmail, 
+                    cEmail: formData.cEmail,
                     cWebsite: formData.cWebsite,
                     cMessage: formData.cMessage
                 }
-                contacts.push(x);
+                const existingContacts = sessionStorage.getItem("contacts");
+                let contactsArray: ContactDTO[] = existingContacts ? JSON.parse(existingContacts) : [];
+
+                contactsArray.push(contact);
+
+                sessionStorage.setItem("contacts", JSON.stringify(contactsArray));
                 console.log("Contact: ", contacts);
-                
+
                 setFormData({ cName: '', cEmail: '', cWebsite: '', cMessage: '' });
             } else {
                 setNotification({ message: 'Form submission failed', type: 'error' });
@@ -89,6 +94,7 @@ const ContactForm = () => {
                             placeholder="Your Email"
                             value={formData.cEmail}
                             onChange={handleChange}
+                            required
                         />
                     </div>
                     <div className="form-field">

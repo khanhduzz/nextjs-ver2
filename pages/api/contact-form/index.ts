@@ -1,13 +1,15 @@
-import { ContactDTO, contacts } from "@/modules/contact/models/Contact";
+import { ContactDTO } from "@/modules/contact/models/Contact";
 import { NextApiRequest, NextApiResponse } from "next";
-import { currentAuth } from "@/modules/authentication/models/UserInformation";
+
+let contacts: ContactDTO[] = [];
+let TOTAL_PAGE: number = 5;
 
 type Response = {
   message: string;
   data?: ContactDTO[];
   currentPage?: number;
   totalPages?: number;
-}
+};
 
 export default function handler(
   req: NextApiRequest,
@@ -17,23 +19,17 @@ export default function handler(
     try {
       const { cName, cEmail, cWebsite, cMessage } = req.body as ContactDTO;
 
-      if (!cName || !cMessage) {
-        return res.status(400).json({ message: "cName and cMessage are required." });
+      if (!cName || !cMessage || !cEmail) {
+        return res
+          .status(400)
+          .json({ message: "Name, Email and Message are required." });
       }
-
-      const newContact: ContactDTO = { cName, cEmail, cWebsite, cMessage };
-      contacts.push(newContact);
 
       return res.status(201).json({ message: "Contact added successfully." });
     } catch (error) {
       return res.status(500).json({ message: "Internal server error." });
     }
   } else if (req.method === "GET") {
-
-    if (!currentAuth || (currentAuth.length === 0)) {
-      return res.status(401).json({ message: "Unauthorized access. Please log in." });
-    }
-
     const { page = 1, pageSize = 10 } = req.query;
     const pageNumber = parseInt(page as string, 10) || 1;
     const size = parseInt(pageSize as string, 10) || 10;
@@ -52,6 +48,8 @@ export default function handler(
     });
   } else {
     res.setHeader("Allow", ["POST", "GET"]);
-    return res.status(405).json({ message: `Method ${req.method} not allowed` });
+    return res
+      .status(405)
+      .json({ message: `Method ${req.method} not allowed` });
   }
 }
