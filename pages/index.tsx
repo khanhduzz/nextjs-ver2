@@ -8,6 +8,7 @@ import FormatVideoArticle from "@/modules/home/components/FormatVideoArticle";
 import { useEffect, useState } from "react";
 import { MainArticle, PostPagination } from "@/modules/posts/PostPagination";
 import { GetServerSideProps } from "next";
+import Pagination from "@/common/components/Pagination";
 
 interface HomeProps {
   initialPosts: PostPagination;
@@ -17,24 +18,38 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async (context)
   const page = Number(context.query.page) || 1;
   const search = context.query.search || "";
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-  const response = await fetch(`${baseUrl}/api/posts?page=${page}&search=${search}`);
+  const response = await fetch(`${baseUrl}/api/posts?page=${page}&search=${search}`,
+    { cache: 'no-cache' }
+  );
   const data: PostPagination = await response.json();
-  
+
   return { props: { initialPosts: data } };
 };
 
-export default function Home(initialPosts : HomeProps) {
-  const [posts, setPosts] = useState<PostPagination>(initialPosts.initialPosts);
+export default function Home(
+  initialPosts: HomeProps
+) {
+  const [posts, setPosts] = useState<PostPagination>(
+    initialPosts.initialPosts
+  );
   const [search, setSearch] = useState<string>("");
-  const [page, setPage] = useState<number>(1);
+  const [page, setPage] = useState<number>(initialPosts.initialPosts.currentPage ?? 1);
 
   const fetchPosts = async () => {
-    const response = await fetch(`/api/posts?page=${page}&search=${search}`);
+    const response = await fetch(`/api/posts?page=${page}&search=${search}`, {
+      cache: 'no-cache'
+    });
     const data = await response.json();
     setPosts(data);
   };
 
+  const handlePageChange = (newPage: number) => {
+    window.location.href = `?page=${newPage}`;
+  }
+
   useEffect(() => {
+    console.log("Page change here");
+    
     fetchPosts();
   }, [page, search]);
 
@@ -45,8 +60,7 @@ export default function Home(initialPosts : HomeProps) {
           <div className="bricks-wrapper">
             <div className="grid-sizer"></div>
             <Slides />
-            {/* <StandardArticle /> */}
-            {posts.data?.map((article: MainArticle, index: number) => (
+            {posts ? posts.data?.map((article: MainArticle, index: number) => (
               article.type === 'standard' ? (
                 <Article key={index} {...article} />
               ) : article.type === 'audio' ? (
@@ -60,26 +74,23 @@ export default function Home(initialPosts : HomeProps) {
               ) : article.type === 'quote' ? (
                 <QuoteArticle key={index} {...article} />
               )
-              : null
-            ))}
+                : null
+            )) :
+              <article className="brick entry animate-this">
+                <div className="entry-text">
+                  <div className="entry-header w-full">
+                    <h1 className="entry-title">There is no posts...</h1>
+                  </div>
+                </div>
+              </article>}
           </div>
         </div>
 
-        <div className="row">
-          <nav className="pagination">
-            <span className="page-numbers prev inactive">Prev</span>
-            <span className="page-numbers current">1</span>
-            <a href="#" className="page-numbers">2</a>
-            <a href="#" className="page-numbers">3</a>
-            <a href="#" className="page-numbers">4</a>
-            <a href="#" className="page-numbers">5</a>
-            <a href="#" className="page-numbers">6</a>
-            <a href="#" className="page-numbers">7</a>
-            <a href="#" className="page-numbers">8</a>
-            <a href="#" className="page-numbers">9</a>
-            <a href="#" className="page-numbers next">Next</a>
-          </nav>
-        </div>
+        <Pagination
+          currentPage={page}
+          totalPages={posts.totalPages ?? 0}
+          onPageChange={handlePageChange}
+        />
       </section>
     </>
   );

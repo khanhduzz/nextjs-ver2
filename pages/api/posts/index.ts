@@ -1,7 +1,7 @@
-import { PostPagination, posts } from "@/modules/posts/PostPagination";
+import { PostPagination, fakeArticle } from "@/modules/posts/PostPagination";
 import { NextApiRequest, NextApiResponse } from "next";
 
-const POSTS_PER_PAGE = 20;
+const POSTS_PER_PAGE = 5;
 
 export default function handler(
   req: NextApiRequest,
@@ -14,14 +14,20 @@ export default function handler(
       const currentPage = Number(page);
       const offset = (currentPage - 1) * POSTS_PER_PAGE;
 
-      const filteredPosts = posts.data?.filter(post =>
-        post.name.toLowerCase().includes(search.toString().toLowerCase()) ||
-        post.description.toLowerCase().includes(search.toString().toLowerCase())
+      const filteredPosts = fakeArticle.filter(
+        (post) =>
+          post.name.toLowerCase().includes(search.toString().toLowerCase()) ||
+          post.description
+            .toLowerCase()
+            .includes(search.toString().toLowerCase())
       );
 
-      const paginatedPosts = filteredPosts?.slice(offset, offset + POSTS_PER_PAGE);
+      const paginatedPosts = filteredPosts?.slice(
+        offset,
+        offset + POSTS_PER_PAGE
+      );
 
-      const totalPages = Math.ceil(filteredPosts?.length??0 / POSTS_PER_PAGE);
+      const totalPages = Math.ceil((filteredPosts?.length ?? 0) / POSTS_PER_PAGE);      
 
       const paginationResponse: PostPagination = {
         message: "Posts fetched successfully",
@@ -37,6 +43,8 @@ export default function handler(
     }
   } else {
     res.setHeader("Allow", ["GET"]);
-    return res.status(405).json({ message: `Method ${req.method} not allowed` });
+    return res
+      .status(405)
+      .json({ message: `Method ${req.method} not allowed` });
   }
 }

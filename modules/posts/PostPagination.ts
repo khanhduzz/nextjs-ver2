@@ -187,10 +187,3 @@ export let fakeArticle: MainArticle[] = [
     ],
   },
 ];
-
-export let posts: PostPagination = {
-  message: "Articles",
-  data: fakeArticle,
-  currentPage: 0,
-  totalPages: 20,
-};
