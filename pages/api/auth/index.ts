@@ -20,17 +20,14 @@ export default function handler(
     //   });
 
     const cookies = req.headers.cookie ? parse(req.headers.cookie) : {};
-
-    const sessionCookie = JSON.parse(cookies.session ?? "");
-
-    console.log("Session Cookie: ", sessionCookie);
-
-    if (sessionCookie && sessionCookie.username && sessionCookie.password) {
+    const sessionCookie = cookies.session;
+    if (sessionCookie) {
+      const auth = JSON.parse(sessionCookie)
       return res.status(200).json({
         message: "User information retrieved successfully",
         isAuthenticated: true,
         user: {
-          username: sessionCookie.username,
+          username: auth.username,
         },
       });
     } else {
