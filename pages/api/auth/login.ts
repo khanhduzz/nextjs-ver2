@@ -37,7 +37,7 @@ export default async function login(
           const cookie = serialize('session', JSON.stringify(loginInfo), {
             httpOnly: true,
             secure: process.env.NODE_ENV === 'production',
-            maxAge: 60 * 60 * 24 * 7,
+            maxAge: 60 * 60,
             path: '/',
           })
           res.setHeader('Set-Cookie', cookie)

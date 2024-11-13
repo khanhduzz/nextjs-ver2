@@ -1,4 +1,5 @@
 import { ContactDTO } from "@/modules/contact/models/Contact";
+import { parse, serialize } from "cookie";
 import { NextApiRequest, NextApiResponse } from "next";
 
 let contacts: ContactDTO[] = [];
@@ -17,13 +18,32 @@ export default function handler(
 ) {
   if (req.method === "POST") {
     try {
-      const { cName, cEmail, cWebsite, cMessage } = req.body as ContactDTO;
+      const data: ContactDTO = req.body;
 
-      if (!cName || !cMessage || !cEmail) {
+      if (!data.cName || !data.cMessage || !data.cEmail) {
         return res
           .status(400)
           .json({ message: "Name, Email and Message are required." });
       }
+
+      const existingCookies = req.headers.cookie
+        ? parse(req.headers.cookie)
+        : {};
+      const existingContacts = existingCookies.contacts
+        ? JSON.parse(existingCookies.contacts)
+        : [];
+
+      const updatedContacts = Array.isArray(existingContacts)
+        ? [...existingContacts, data]
+        : [data];
+
+      const cookie = serialize("contacts", JSON.stringify(updatedContacts), {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        maxAge: 60 * 60,
+        path: "/",
+      });
+      res.setHeader("Set-Cookie", cookie);
 
       return res.status(201).json({ message: "Contact added successfully." });
     } catch (error) {
@@ -37,15 +57,26 @@ export default function handler(
     const startIndex = (pageNumber - 1) * size;
     const endIndex = startIndex + size;
 
-    const paginatedContacts = contacts.slice(startIndex, endIndex);
-    const totalPages = Math.ceil(contacts.length / size);
+    try {
+      const existingCookies = req.headers.cookie
+        ? parse(req.headers.cookie)
+        : {};
+      const existingContacts = existingCookies.contacts
+        ? JSON.parse(existingCookies.contacts)
+        : [];
 
-    return res.status(200).json({
-      message: "Contacts retrieved successfully.",
-      data: paginatedContacts,
-      currentPage: pageNumber,
-      totalPages,
-    });
+      const paginatedContacts = existingContacts.slice(startIndex, endIndex);
+      const totalPages = Math.ceil(existingContacts.length / size);
+
+      return res.status(200).json({
+        message: "Contacts retrieved successfully.",
+        data: paginatedContacts,
+        currentPage: pageNumber,
+        totalPages,
+      });
+    } catch (error) {
+      return res.status(500).json({ message: "Internal server error." });
+    }
   } else {
     res.setHeader("Allow", ["POST", "GET"]);
     return res

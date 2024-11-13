@@ -26,7 +26,7 @@ const AuthenticationInformation = () => {
 
     useEffect(() => {
         getAuthenticationInformation().then((data) => {
-            console.log("data ", data);
+            // console.log("data ", data);
             setAuthenticateDto(data);
 
         });
