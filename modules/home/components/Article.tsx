@@ -1,5 +1,6 @@
 import { MainArticle } from '@/modules/posts/PostPagination';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Article = (article: MainArticle) => {
     return (
@@ -8,7 +9,14 @@ const Article = (article: MainArticle) => {
                 <div className="entry-thumb">
                     <Link href="standard/1" className="thumb-link">
                         {article.imageUrl?.map((image, index) => (
-                            <img key={index} src={image} alt={article.imageName} />
+                            <Image
+                                key={index}
+                                src={image}
+                                alt={article.imageName ?? ''}
+                                width={500} 
+                                height={300} 
+                                style={{ objectFit: 'contain' }}
+                            />
                         ))}
                     </Link>
                 </div>
@@ -17,11 +25,11 @@ const Article = (article: MainArticle) => {
                         <div className="entry-meta">
                             <span className="cat-links">
                                 {article.articleCategories?.map((link, index) => (
-                                    <a key={index} href={link.link ?? '#'}>{link.title}</a>
+                                    <Link key={index} href={link.link ?? '#'}>{link.title}</Link>
                                 ))}
                             </span>
                         </div>
-                        <h1 className="entry-title"><a href={`/standard/${article.articleId}`}>{article.name}</a></h1>
+                        <h1 className="entry-title"><Link href={`/standard/${article.articleId}`}>{article.name}</Link></h1>
                     </div>
                     <div className="entry-excerpt">
                         {article.description}

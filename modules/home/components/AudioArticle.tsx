@@ -1,5 +1,6 @@
 import { MainArticle } from '@/modules/posts/PostPagination';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const AudioArticle = (article: MainArticle) => {
     return (
@@ -8,7 +9,14 @@ const AudioArticle = (article: MainArticle) => {
                 <div className="entry-thumb">
                     <Link href={`/audio/${article.articleId}`} className="thumb-link">
                         {article.imageUrl?.map((image, index) => (
-                            <img key={index} src={image} alt={article.imageName} />
+                            <Image
+                                key={index}
+                                src={image}
+                                alt={article.imageName ?? ''}
+                                width={500}
+                                height={300}
+                                style={{ objectFit: 'contain' }}
+                            />
                         ))}
                     </Link>
                     <div className="audio-wrap">

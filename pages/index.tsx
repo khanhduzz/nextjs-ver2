@@ -1,4 +1,4 @@
-import { QuoteArticle, Slides, StandardArticle } from "@/modules/home/components";
+import { QuoteArticle, Slides } from "@/modules/home/components";
 import AudioArticle from "@/modules/home/components/AudioArticle";
 import Article from "@/modules/home/components/Article";
 import GalleryArticle from "@/modules/home/components/GalleryArticle";
@@ -33,7 +33,9 @@ export default function Home(
     initialPosts.initialPosts
   );
   const [search, setSearch] = useState<string>("");
-  const [page, setPage] = useState<number>(initialPosts.initialPosts.currentPage ?? 1);
+  const [page, setPage] = useState<number>(
+    initialPosts.initialPosts.currentPage ?? 1
+  );
 
   const fetchPosts = async () => {
     const response = await fetch(`/api/posts?page=${page}&search=${search}`, {
@@ -88,7 +90,7 @@ export default function Home(
 
         <Pagination
           currentPage={page}
-          totalPages={posts.totalPages ?? 0}
+          totalPages={posts?.totalPages ?? 0}
           onPageChange={handlePageChange}
         />
       </section>

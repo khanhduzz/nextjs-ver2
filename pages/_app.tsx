@@ -14,15 +14,15 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <Script src="/js/modernizr.js" strategy="afterInteractive"/>
       <Script src="/js/pace.min.js" strategy="afterInteractive"/>
+      <Script src="/js/jquery-2.1.3.min.js" strategy="beforeInteractive"/>
+      <Script src="/js/plugins.js" strategy="beforeInteractive"/>
+      <Script src="/js/main.js" strategy="afterInteractive"/>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
       </Head>
       <Layout>
         <Component {...pageProps} />
       </Layout>
-      <Script src="/js/jquery-2.1.3.min.js" strategy="beforeInteractive"/>
-      <Script src="/js/plugins.js" strategy="beforeInteractive"/>
-      <Script src="/js/main.js" strategy="afterInteractive"/>
     </>
   );
 }

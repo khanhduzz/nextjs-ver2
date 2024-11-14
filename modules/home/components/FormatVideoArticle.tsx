@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { MainArticle } from '@/modules/posts/PostPagination'
+import Image from 'next/image'
 
 const FormatVideoArticle = (article: MainArticle) => {
     return (
@@ -8,7 +9,14 @@ const FormatVideoArticle = (article: MainArticle) => {
                 <div className="entry-thumb video-image">
                     <Link href={article.mediaUrl ?? ''} data-lity>
                         {article.imageUrl?.map((image, index) => (
-                            <img key={index} src={image} alt={article.imageName} />
+                            <Image
+                                key={index}
+                                src={image}
+                                alt={article.imageName ?? ''}
+                                width={500}
+                                height={300}
+                                style={{ objectFit: 'contain' }}
+                            />
                         ))}
                     </Link>
                 </div>
@@ -17,11 +25,11 @@ const FormatVideoArticle = (article: MainArticle) => {
                         <div className="entry-meta">
                             <span className="cat-links">
                                 {article.articleCategories?.map((link, index) => (
-                                    <a key={index} href={link.link ?? '#'}>{link.title}</a>
+                                    <Link key={index} href={link.link ?? '#'}>{link.title}</Link>
                                 ))}
                             </span>
                         </div>
-                        <h1 className="entry-title"><a href={`/video/${article.articleId}`}>{article.name}</a></h1>
+                        <h1 className="entry-title"><Link href={`/video/${article.articleId}`}>{article.name}</Link></h1>
                     </div>
                     <div className="entry-excerpt">
                         {article.description}

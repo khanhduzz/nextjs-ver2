@@ -1,4 +1,5 @@
 import { MainArticle } from '@/modules/posts/PostPagination'
+import Link from 'next/link'
 
 const FormatLinkArticle = (article: MainArticle) => {
     return (
@@ -8,7 +9,7 @@ const FormatLinkArticle = (article: MainArticle) => {
                     <div className="link-wrap">
                         <p>{article.name}</p>
                         <cite>
-                            <a target="_blank" href={article.mediaUrl}>{article.description}</a>
+                            <Link target="_blank" href={`article.mediaUrl`}>{article.description}</Link>
                         </cite>
                     </div>
                 </div>
