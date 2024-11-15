@@ -23,12 +23,12 @@ const Header = ({ children }: Props) => {
                             <li className={`has-children ${pathname.startsWith('/category') ? 'current' : ''}`}>
                                 <a href="/category" title="">Categories</a>
                                 <ul className="sub-menu">
-                                    <li><a href="/category?category=wordpress">Wordpress</a></li>
-                                    <li><a href="/category?category=html">HTML</a></li>
-                                    <li><a href="/category?category=photography">Photography</a></li>
-                                    <li><a href="/category?category=ui">UI</a></li>
-                                    <li><a href="/category?category=mockups">Mockups</a></li>
-                                    <li><a href="/category?category=branding">Branding</a></li>
+                                    <li><a href="/category/wordpress">Wordpress</a></li>
+                                    <li><a href="/category/html">HTML</a></li>
+                                    <li><a href="/category/photography">Photography</a></li>
+                                    <li><a href="/category/ui">UI</a></li>
+                                    <li><a href="/category/mockups">Mockups</a></li>
+                                    <li><a href="/category/branding">Branding</a></li>
                                 </ul>
                             </li>
                             <li className={`has-children ${pathname.startsWith('/standard') || pathname.startsWith('/video') || pathname.startsWith('/audio') || pathname.startsWith('/gallery') ? 'current' : ''}`}>

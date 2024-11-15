@@ -1,6 +1,6 @@
 import { Slides } from "@/modules/home/components";
 import { useEffect, useState } from "react";
-import { PostPagination } from "@/modules/posts/PostPagination";
+import { PostPagination } from "@/modules/articles/PostPagination";
 import { GetServerSideProps } from "next";
 import Pagination from "@/common/components/Pagination";
 import GridArticle from "@/modules/GridArticle";
@@ -13,7 +13,7 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async (context)
   const page = Number(context.query.page) || 1;
   const search = context.query.search || "";
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-  const response = await fetch(`${baseUrl}/api/posts?page=${page}&search=${search}`,
+  const response = await fetch(`${baseUrl}/api/articles?page=${page}&search=${search}`,
     { cache: 'no-cache' }
   );
   const data: PostPagination = await response.json();
@@ -33,7 +33,7 @@ export default function Home(
   );
 
   const fetchPosts = async () => {
-    const response = await fetch(`/api/posts?page=${page}&search=${search}`, {
+    const response = await fetch(`/api/articles?page=${page}&search=${search}`, {
       cache: 'no-cache'
     });
     const data = await response.json();

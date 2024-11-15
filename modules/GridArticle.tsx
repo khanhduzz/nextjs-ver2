@@ -1,5 +1,5 @@
 import { Article, AudioArticle, FormatLinkArticle, FormatVideoArticle, GalleryArticle, QuoteArticle } from "./home/components"
-import { MainArticle, PostPagination } from "./posts/PostPagination"
+import { MainArticle, PostPagination } from "./articles/PostPagination"
 
 type GridArticleProps = {
     posts: PostPagination

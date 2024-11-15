@@ -1,4 +1,4 @@
-import { MainArticle } from "@/modules/posts/PostPagination"
+import { MainArticle } from "@/modules/articles/PostPagination"
 import Image from 'next/image'
 import Link from "next/link"
 
@@ -34,7 +34,7 @@ const GalleryArticle = (article: MainArticle) => {
                                 ))}
                             </span>
                         </div>
-                        <h1 className="entry-title"><a href={`/gallery/${article.articleId}`}>{article.name}</a></h1>
+                        <h1 className="entry-title"><a href={`/articles/${article.articleId}`}>{article.name}</a></h1>
                     </div>
                     <div className="entry-excerpt">
                         {article.description}

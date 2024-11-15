@@ -1,4 +1,4 @@
-import { MainArticle } from '@/modules/posts/PostPagination';
+import { MainArticle } from '@/modules/articles/PostPagination';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -7,7 +7,7 @@ const Article = (article: MainArticle) => {
         <>
             <article className="brick entry animate-this">
                 <div className="entry-thumb">
-                    <a href="standard/1" className="thumb-link">
+                    <a href={`/articles/${article.articleId?? 1}`} className="thumb-link">
                         {article.imageUrl?.map((image, index) => (
                             <Image
                                 key={index}
@@ -29,7 +29,7 @@ const Article = (article: MainArticle) => {
                                 ))}
                             </span>
                         </div>
-                        <h1 className="entry-title"><a href={`/standard/${article.articleId}`}>{article.name}</a></h1>
+                        <h1 className="entry-title"><a href={`/articles/${article.articleId}`}>{article.name}</a></h1>
                     </div>
                     <div className="entry-excerpt">
                         {article.description}

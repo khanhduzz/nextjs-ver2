@@ -1,4 +1,4 @@
-import { PostPagination, fakeArticle } from "@/modules/posts/PostPagination";
+import { PostPagination, fakeArticle } from "@/modules/articles/PostPagination";
 import { NextApiRequest, NextApiResponse } from "next";
 
 const POSTS_PER_PAGE = 20;

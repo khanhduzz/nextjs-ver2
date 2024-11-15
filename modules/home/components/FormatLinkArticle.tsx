@@ -1,4 +1,4 @@
-import { MainArticle } from '@/modules/posts/PostPagination'
+import { MainArticle } from '@/modules/articles/PostPagination'
 import Link from 'next/link'
 
 const FormatLinkArticle = (article: MainArticle) => {
