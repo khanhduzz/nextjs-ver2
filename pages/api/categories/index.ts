@@ -14,16 +14,19 @@ export default function handler(
 
       const currentPage = Number(page);
       const offset = (currentPage - 1) * POSTS_PER_PAGE;
+      let filteredPosts = fakeArticle;
 
-      const filteredPosts = fakeArticle.filter((post) => {
-        const matchingCategory = post.articleCategories?.some((cat) =>
-          cat.title
-            .toLowerCase()
-            .trim()
-            .includes(category.toString().toLowerCase().trim())
-        );
-        return Boolean(matchingCategory);
-      });
+      if (category != "") {
+        filteredPosts = fakeArticle.filter((post) => {
+          const matchingCategory = post.articleCategories?.some((cat) =>
+            cat.title
+              .toLowerCase()
+              .trim()
+              === (category.toString().toLowerCase().trim())
+          );
+          return Boolean(matchingCategory);
+        });
+      }
 
       const paginatedPosts = filteredPosts?.slice(
         offset,

@@ -7,7 +7,7 @@ const AudioArticle = (article: MainArticle) => {
         <>
             <article className="brick entry format-audio animate-this">
                 <div className="entry-thumb">
-                    <Link href={`/audio/${article.articleId}`} className="thumb-link">
+                    <a href={`/audio/${article.articleId}`} className="thumb-link">
                         {article.imageUrl?.map((image, index) => (
                             <Image
                                 key={index}
@@ -18,7 +18,7 @@ const AudioArticle = (article: MainArticle) => {
                                 style={{ objectFit: 'contain' }}
                             />
                         ))}
-                    </Link>
+                    </a>
                     <div className="audio-wrap">
                         <audio id="player" src={article.mediaUrl} controls></audio>
                     </div>
@@ -28,7 +28,7 @@ const AudioArticle = (article: MainArticle) => {
                         <div className="entry-meta">
                             <span className="cat-links">
                                 {article.articleCategories?.map((link, index) => (
-                                    <a key={index} href={link.link ?? '#'}>{link.title}</a>
+                                    <a key={index} href={`/category/${link.title}` ?? '#'}>{link.title}</a>
                                 ))}
                             </span>
                         </div>

@@ -30,11 +30,11 @@ const GalleryArticle = (article: MainArticle) => {
                         <div className="entry-meta">
                             <span className="cat-links">
                                 {article.articleCategories?.map((link, index) => (
-                                    <Link key={index} href={link.link ?? '#'}>{link.title}</Link>
+                                    <a key={index} href={`/category/${link.title}` ?? '#'}>{link.title}</a>
                                 ))}
                             </span>
                         </div>
-                        <h1 className="entry-title"><Link href={`/gallery/${article.articleId}`}>{article.name}</Link></h1>
+                        <h1 className="entry-title"><a href={`/gallery/${article.articleId}`}>{article.name}</a></h1>
                     </div>
                     <div className="entry-excerpt">
                         {article.description}

@@ -9,7 +9,7 @@ const FormatLinkArticle = (article: MainArticle) => {
                     <div className="link-wrap">
                         <p>{article.name}</p>
                         <cite>
-                            <Link target="_blank" href={`article.mediaUrl`}>{article.description}</Link>
+                            <a target="_blank" href={`article.mediaUrl`}>{article.description}</a>
                         </cite>
                     </div>
                 </div>

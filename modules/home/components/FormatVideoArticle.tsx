@@ -7,7 +7,7 @@ const FormatVideoArticle = (article: MainArticle) => {
         <>
             <article className="brick entry format-video animate-this">
                 <div className="entry-thumb video-image">
-                    <Link href={article.mediaUrl ?? ''} data-lity>
+                    <a href={article.mediaUrl ?? ''} data-lity>
                         {article.imageUrl?.map((image, index) => (
                             <Image
                                 key={index}
@@ -18,18 +18,18 @@ const FormatVideoArticle = (article: MainArticle) => {
                                 style={{ objectFit: 'contain' }}
                             />
                         ))}
-                    </Link>
+                    </a>
                 </div>
                 <div className="entry-text">
                     <div className="entry-header">
                         <div className="entry-meta">
                             <span className="cat-links">
                                 {article.articleCategories?.map((link, index) => (
-                                    <Link key={index} href={link.link ?? '#'}>{link.title}</Link>
+                                    <a key={index} href={`/category/${link.title}` ?? '#'}>{link.title}</a>
                                 ))}
                             </span>
                         </div>
-                        <h1 className="entry-title"><Link href={`/video/${article.articleId}`}>{article.name}</Link></h1>
+                        <h1 className="entry-title"><a href={`/video/${article.articleId}`}>{article.name}</a></h1>
                     </div>
                     <div className="entry-excerpt">
                         {article.description}

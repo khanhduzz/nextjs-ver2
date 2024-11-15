@@ -8,7 +8,7 @@ type GridArticleProps = {
 const GridArticle = (data: GridArticleProps) => {
     return (
         <>
-            {data ? data.posts.data?.map((article: MainArticle, index: number) => (
+            {(data.posts.data && data.posts.data.length > 0) ? data.posts.data?.map((article: MainArticle, index: number) => (
                 article.type === 'standard' ? (
                     <Article key={index} {...article} />
                 ) : article.type === 'audio' ? (
@@ -25,7 +25,7 @@ const GridArticle = (data: GridArticleProps) => {
                     : null
             )) :
                 <article className="brick entry animate-this">
-                    <div className="entry-text">
+                    <div className="">
                         <div className="entry-header w-full">
                             <h1 className="entry-title">There is no posts...</h1>
                         </div>
