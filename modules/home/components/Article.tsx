@@ -25,7 +25,7 @@ const Article = (article: MainArticle) => {
                         <div className="entry-meta">
                             <span className="cat-links">
                                 {article.articleCategories?.map((link, index) => (
-                                    <Link key={index} href={link.link ?? '#'}>{link.title}</Link>
+                                    <Link key={index} href={`/category/?category=${link.title}` ?? '#'}>{link.title}</Link>
                                 ))}
                             </span>
                         </div>

@@ -1,14 +1,9 @@
-import { QuoteArticle, Slides } from "@/modules/home/components";
-import AudioArticle from "@/modules/home/components/AudioArticle";
-import Article from "@/modules/home/components/Article";
-import GalleryArticle from "@/modules/home/components/GalleryArticle";
-import FormatLinkArticle from "@/modules/home/components/FormatLinkArticle";
-
-import FormatVideoArticle from "@/modules/home/components/FormatVideoArticle";
+import { Slides } from "@/modules/home/components";
 import { useEffect, useState } from "react";
-import { MainArticle, PostPagination } from "@/modules/posts/PostPagination";
+import { PostPagination } from "@/modules/posts/PostPagination";
 import { GetServerSideProps } from "next";
 import Pagination from "@/common/components/Pagination";
+import GridArticle from "@/modules/GridArticle";
 
 interface HomeProps {
   initialPosts: PostPagination;
@@ -51,7 +46,7 @@ export default function Home(
 
   useEffect(() => {
     console.log("Page change here");
-    
+
     fetchPosts();
   }, [page, search]);
 
@@ -62,32 +57,9 @@ export default function Home(
           <div className="bricks-wrapper">
             <div className="grid-sizer"></div>
             <Slides />
-            {posts ? posts.data?.map((article: MainArticle, index: number) => (
-              article.type === 'standard' ? (
-                <Article key={index} {...article} />
-              ) : article.type === 'audio' ? (
-                <AudioArticle key={index} {...article} />
-              ) : article.type === 'link' ? (
-                <FormatLinkArticle key={index} {...article} />
-              ) : article.type === 'video' ? (
-                <FormatVideoArticle key={index} {...article} />
-              ) : article.type === 'gallery' ? (
-                <GalleryArticle key={index} {...article} />
-              ) : article.type === 'quote' ? (
-                <QuoteArticle key={index} {...article} />
-              )
-                : null
-            )) :
-              <article className="brick entry animate-this">
-                <div className="entry-text">
-                  <div className="entry-header w-full">
-                    <h1 className="entry-title">There is no posts...</h1>
-                  </div>
-                </div>
-              </article>}
+            <GridArticle posts={posts} />
           </div>
         </div>
-
         <Pagination
           currentPage={page}
           totalPages={posts?.totalPages ?? 0}

@@ -1,10 +1,14 @@
-import a from "next/link"
+import { useRouter } from "next/router";
 
 type Props = {
     children: React.ReactNode;
 };
 
 const Header = ({ children }: Props) => {
+    const router = useRouter();
+    const { pathname } = router;
+
+    const isCurrent = (path: string) => pathname === path;
     return (
         <>
             <header className="short-header">
@@ -15,19 +19,19 @@ const Header = ({ children }: Props) => {
                     </div>
                     <nav id="main-nav-wrap">
                         <ul className="main-navigation sf-menu">
-                            <li className="current"><a href="/" title="">Home</a></li>
-                            <li className="has-children">
-                                <a href="/category.html" title="">Categories</a>
+                            <li className={isCurrent('/') ? 'current' : ''}><a href="/" title="">Home</a></li>
+                            <li className={`has-children ${pathname.startsWith('/category') ? 'current' : ''}`}>
+                                <a href="/category" title="">Categories</a>
                                 <ul className="sub-menu">
-                                    <li><a href="/category.html">Wordpress</a></li>
-                                    <li><a href="/category.html">HTML</a></li>
-                                    <li><a href="/category.html">Photography</a></li>
-                                    <li><a href="/category.html">UI</a></li>
-                                    <li><a href="/category.html">Mockups</a></li>
-                                    <li><a href="/category.html">Branding</a></li>
+                                    <li><a href="/category?category=wordpress">Wordpress</a></li>
+                                    <li><a href="/category?category=html">HTML</a></li>
+                                    <li><a href="/category?category=photography">Photography</a></li>
+                                    <li><a href="/category?category=ui">UI</a></li>
+                                    <li><a href="/category?category=mockups">Mockups</a></li>
+                                    <li><a href="/category?category=branding">Branding</a></li>
                                 </ul>
                             </li>
-                            <li className="has-children">
+                            <li className={`has-children ${pathname.startsWith('/standard') || pathname.startsWith('/video') || pathname.startsWith('/audio') || pathname.startsWith('/gallery') ? 'current' : ''}`}>
                                 <a href="/standard/1" title="">Blog</a>
                                 <ul className="sub-menu">
                                     <li><a href="/video/1">Video Post</a></li>
@@ -36,9 +40,9 @@ const Header = ({ children }: Props) => {
                                     <li><a href="/standard/1">Standard Post</a></li>
                                 </ul>
                             </li>
-                            <li><a href="/style" title="">Styles</a></li>
-                            <li><a href="/about" title="">About</a></li>
-                            <li><a href="/contact" title="">Contact</a></li>
+                            <li className={isCurrent('/style') ? 'current' : ''}><a href="/style" title="">Styles</a></li>
+                            <li className={isCurrent('/about') ? 'current' : ''}><a href="/about" title="">About</a></li>
+                            <li className={isCurrent('/contact') ? 'current' : ''}><a href="/contact" title="">Contact</a></li>
                             {children}
                         </ul>
                     </nav>
@@ -64,6 +68,8 @@ const Header = ({ children }: Props) => {
 }
 
 export default Header
+
+
 
 // import { useRouter } from 'next/router';
 // import Link from 'next/link'; // Correct import of Link

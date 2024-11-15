@@ -1,5 +1,5 @@
 import Link from "next/link";
-import router from "next/router";
+import router, { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 type AuthenticateUser = {
@@ -12,6 +12,11 @@ type AuthenticateInformationDto = {
 }
 
 const AuthenticationInformation = () => {
+    const router = useRouter();
+    const { pathname } = router;
+
+    const isCurrent = (path: string) => pathname === path;
+
     const [authenticateDto, setAuthenticateDto] = useState<AuthenticateInformationDto>({
         isAuthenticated: false,
         user: { username: '' }
@@ -26,7 +31,6 @@ const AuthenticationInformation = () => {
 
     useEffect(() => {
         getAuthenticationInformation().then((data) => {
-            // console.log("data ", data);
             setAuthenticateDto(data);
 
         });
@@ -52,11 +56,11 @@ const AuthenticationInformation = () => {
     return (
         <>
             {authenticateDto.isAuthenticated ? (
-                <div>
-                    <li><p>Welcome:{' ' + authenticateDto.user.username}</p></li>
-                    <li><Link href="/admin/contacts">Contacts</Link></li>
+                <>
+                    <li className={isCurrent('/admin/contacts') ? 'current' : ''}><Link href="/admin/contacts">Requests</Link></li>
                     <li><a onClick={() => handleLogout()} style={{ cursor: "pointer" }}>Logout</a></li>
-                </div>
+                    <li><p>Welcome:{' ' + authenticateDto.user.username}</p></li>
+                </>
             ) : (
                 <li><Link href="login" title="">Login</Link></li>
             )}

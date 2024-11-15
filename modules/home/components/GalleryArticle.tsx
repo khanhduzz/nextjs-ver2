@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from "next/link"
 
 const GalleryArticle = (article: MainArticle) => {
+    
     return (
         <>
             <article className="brick entry format-gallery group animate-this">
@@ -10,9 +11,8 @@ const GalleryArticle = (article: MainArticle) => {
                     <div className="post-slider flexslider">
                         <ul className="slides">
                             {article.imageUrl?.map((image, index) => (
-                                <li>
+                                <li key={index}>
                                     <Image
-                                        key={index}
                                         src={image}
                                         alt={article.imageName ?? ''}
                                         width={500}
