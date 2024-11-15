@@ -45,8 +45,6 @@ export default function Home(
   }
 
   useEffect(() => {
-    console.log("Page change here");
-
     fetchPosts();
   }, [page, search]);
 

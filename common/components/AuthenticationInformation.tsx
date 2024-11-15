@@ -44,7 +44,8 @@ const AuthenticationInformation = () => {
             if (response.status === 200) {
                 setAuthenticateDto({ isAuthenticated: false, user: { username: "" } });
                 sessionStorage.removeItem("user")
-                router.push("/");
+                window.location.href = "/";
+                // router.push("/");
             } else {
                 console.error("Error logging out");
             }
@@ -57,12 +58,15 @@ const AuthenticationInformation = () => {
         <>
             {authenticateDto.isAuthenticated ? (
                 <>
-                    <li className={isCurrent('/admin/contacts') ? 'current' : ''}><Link href="/admin/contacts">Requests</Link></li>
+                    <li className={isCurrent('/admin/contacts') ? 'current' : ''}><a href="/admin/contacts">Contacts</a></li>
                     <li><a onClick={() => handleLogout()} style={{ cursor: "pointer" }}>Logout</a></li>
                     <li><p>Welcome:{' ' + authenticateDto.user.username}</p></li>
                 </>
             ) : (
-                <li><Link href="login" title="">Login</Link></li>
+                <>
+                    <li className={isCurrent('/contact') ? 'current' : ''}><a href="/contact" title="">Contact</a></li>
+                    <li className={isCurrent('/login') ? 'current' : ''}><a href="login" title="">Login</a></li>
+                </>
             )}
         </>
     )

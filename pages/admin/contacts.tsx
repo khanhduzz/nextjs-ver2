@@ -1,3 +1,4 @@
+import Pagination from "@/common/components/Pagination";
 import AdminContacts from "@/modules/contact/components/AdminContacts"
 import { ContactDTO } from "@/modules/contact/models/Contact";
 import { useEffect, useState } from "react";
@@ -23,30 +24,43 @@ const Contacts = () => {
         }
     };
 
+    const handlePageChange = (newPage: number) => {
+        window.location.href = `?page=${newPage}`;
+    }
+
     useEffect(() => {
         fetchContacts();
     }, []);
 
     return (
         <>
-            <section id="content-wrap" className="site-page">
-                <div className="row">
-                    <div className="col-twelve">
-                        <section>
-                            <div className="content-media">
-                                <div className="entry-text">
-                                    <div className="entry-header">
-                                        <h1 className="entry-title"><a href="">Total contacts</a></h1>
-                                    </div>
-                                </div>
+            {contacts && contacts.length > 0 ? (
+                <>
+                    <section id="page-header">
+                        <div className="row current-cat">
+                            <div className="col-full">
+                                <h1>All Request Contacts</h1>
                             </div>
-                            <div className="primary-content">
-                                <AdminContacts contacts={contacts}/>
-                            </div>
-                        </section>
+                        </div>
+                    </section>
+                    <section id="bricks">
+                        <div className="row masonry w-72">
+                            <AdminContacts contacts={contacts} />
+                        </div>
+                        <Pagination
+                            currentPage={currentPage}
+                            totalPages={totalPages ?? 0}
+                            onPageChange={handlePageChange}
+                        />
+                    </section>
+                </>
+            ) : (<section id="page-header">
+                <div className="row current-cat">
+                    <div className="col-full">
+                        <h1>No Requests Contacts</h1>
                     </div>
                 </div>
-            </section>
+            </section>)}
         </>
     )
 }

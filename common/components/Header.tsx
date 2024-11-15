@@ -42,7 +42,6 @@ const Header = ({ children }: Props) => {
                             </li>
                             <li className={isCurrent('/style') ? 'current' : ''}><a href="/style" title="">Styles</a></li>
                             <li className={isCurrent('/about') ? 'current' : ''}><a href="/about" title="">About</a></li>
-                            <li className={isCurrent('/contact') ? 'current' : ''}><a href="/contact" title="">Contact</a></li>
                             {children}
                         </ul>
                     </nav>

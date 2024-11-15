@@ -8,11 +8,11 @@ const Contact = () => {
                     <div className="col-twelve">
                         <section>
                             <div className="content-media">
-                                {/* <div id="map-wrap">
+                                <div id="map-wrap">
                                     <div id="map-container"></div>
                                     <div id="map-zoom-in"></div>
                                     <div id="map-zoom-out"></div>
-                                </div> */}
+                                </div>
                             </div>
                             <div className="primary-content">
                                 <h1 className="entry-title add-bottom">Get In Touch With Us.</h1>
