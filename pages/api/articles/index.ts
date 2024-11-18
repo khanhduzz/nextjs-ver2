@@ -15,18 +15,17 @@ export default function handler(
       const currentPage = Number(page);
       const offset = (currentPage - 1) * POSTS_PER_PAGE;
 
-      const filteredPosts = articleData.filter(
-        (post) =>
-          post.name.toLowerCase().includes(search.toString().toLowerCase()) ||
-          post.description
-            .toLowerCase()
-            .includes(search.toString().toLowerCase())
-      );
-
-      const paginatedPosts = filteredPosts?.slice(
-        offset,
-        offset + POSTS_PER_PAGE
-      );
+      const filteredPosts = articleData.filter((post) => {
+        const matching = post.name
+          .toLowerCase()
+          .includes(search.toString().toLowerCase());
+        return Boolean(matching);
+      });
+      
+      const paginatedPosts =
+        filteredPosts && filteredPosts.length > 0
+          ? filteredPosts.slice(offset, offset + POSTS_PER_PAGE)
+          : [];
 
       const totalPages = Math.ceil(
         (filteredPosts?.length ?? 0) / POSTS_PER_PAGE
