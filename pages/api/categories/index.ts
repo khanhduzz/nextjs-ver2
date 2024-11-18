@@ -1,11 +1,12 @@
-import { PostPagination, fakeArticle } from "@/modules/articles/PostPagination";
+import { ArticlesPagination } from "@/modules/articles/ArticlesModule";
+import { articleData } from "@/modules/articles/Data";
 import { NextApiRequest, NextApiResponse } from "next";
 
 const POSTS_PER_PAGE = 10;
 
 export default function handler(
   req: NextApiRequest,
-  res: NextApiResponse<PostPagination>
+  res: NextApiResponse<ArticlesPagination>
 ) {
   if (req.method === "GET") {
     try {
@@ -14,10 +15,10 @@ export default function handler(
 
       const currentPage = Number(page);
       const offset = (currentPage - 1) * POSTS_PER_PAGE;
-      let filteredPosts = fakeArticle;
+      let filteredPosts = articleData;
 
       if (category != "") {
-        filteredPosts = fakeArticle.filter((post) => {
+        filteredPosts = articleData.filter((post) => {
           const matchingCategory = post.articleCategories?.some((cat) =>
             cat.title
               .toLowerCase()
@@ -37,7 +38,7 @@ export default function handler(
         (filteredPosts?.length ?? 0) / POSTS_PER_PAGE
       );
 
-      const paginationResponse: PostPagination = {
+      const paginationResponse: ArticlesPagination = {
         message: "Posts fetched successfully",
         data: paginatedPosts,
         currentPage,

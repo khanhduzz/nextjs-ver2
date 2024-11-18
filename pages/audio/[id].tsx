@@ -1,4 +1,4 @@
-import CommentPost from '@/common/components/CommentPost'
+import ArticleComment from '@/common/components/ArticleComment'
 import PageNav from '@/common/components/PageNav'
 import PrimaryContent from '@/common/components/PrimaryContent'
 
@@ -22,7 +22,7 @@ const AudioPost = () => {
                     </div>
                     <PageNav />
                 </div>
-                <CommentPost />
+                <ArticleComment />
             </section >
         </>
     )

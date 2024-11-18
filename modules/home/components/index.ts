@@ -5,11 +5,9 @@ import FormatVideoArticle from "./FormatVideoArticle";
 import GalleryArticle from "./GalleryArticle";
 import QuoteArticle from "./QuoteArticle";
 import Slides from "./Slides";
-import StandardArticle from "./StandardArticle";
 
 export { 
     Slides, 
-    StandardArticle, 
     AudioArticle, 
     QuoteArticle,
     Article,

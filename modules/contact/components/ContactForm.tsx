@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Notification from '@/common/components/Notification';
-import { ContactDTO, contacts } from '../models/Contact';
+import { ContactDTO } from '../models/Contact';
 
 const ContactForm = () => {
     const [formData, setFormData] = useState({
@@ -47,8 +47,7 @@ const ContactForm = () => {
                 contactsArray.push(contact);
 
                 sessionStorage.setItem("contacts", JSON.stringify(contactsArray));
-                console.log("Contact: ", contacts);
-
+                
                 setFormData({ cName: '', cEmail: '', cWebsite: '', cMessage: '' });
             } else {
                 setNotification({ message: 'Form submission failed', type: 'error' });

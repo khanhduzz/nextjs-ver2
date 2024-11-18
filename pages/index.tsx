@@ -1,12 +1,12 @@
 import { Slides } from "@/modules/home/components";
 import { useEffect, useState } from "react";
-import { PostPagination } from "@/modules/articles/PostPagination";
+import { ArticlesPagination } from "@/modules/articles/ArticlesModule";
 import { GetServerSideProps } from "next";
 import Pagination from "@/common/components/Pagination";
 import GridArticle from "@/modules/GridArticle";
 
 interface HomeProps {
-  initialPosts: PostPagination;
+  initialPosts: ArticlesPagination;
 }
 
 export const getServerSideProps: GetServerSideProps<HomeProps> = async (context) => {
@@ -16,7 +16,7 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async (context)
   const response = await fetch(`${baseUrl}/api/articles?page=${page}&search=${search}`,
     { cache: 'no-cache' }
   );
-  const data: PostPagination = await response.json();
+  const data: ArticlesPagination = await response.json();
 
   return { props: { initialPosts: data } };
 };
@@ -24,7 +24,7 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async (context)
 export default function Home(
   initialPosts: HomeProps
 ) {
-  const [posts, setPosts] = useState<PostPagination>(
+  const [posts, setPosts] = useState<ArticlesPagination>(
     initialPosts.initialPosts
   );
   const [search, setSearch] = useState<string>("");

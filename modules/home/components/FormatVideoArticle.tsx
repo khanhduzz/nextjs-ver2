@@ -1,5 +1,4 @@
-import Link from 'next/link'
-import { MainArticle } from '@/modules/articles/PostPagination'
+import { MainArticle } from '@/modules/articles/ArticlesModule'
 import Image from 'next/image'
 
 const FormatVideoArticle = (article: MainArticle) => {

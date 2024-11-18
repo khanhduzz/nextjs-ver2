@@ -1,8 +1,8 @@
 import { Article, AudioArticle, FormatLinkArticle, FormatVideoArticle, GalleryArticle, QuoteArticle } from "./home/components"
-import { MainArticle, PostPagination } from "./articles/PostPagination"
+import { MainArticle, ArticlesPagination } from "./articles/ArticlesModule"
 
 type GridArticleProps = {
-    posts: PostPagination
+    posts: ArticlesPagination
 }
 
 const GridArticle = (data: GridArticleProps) => {

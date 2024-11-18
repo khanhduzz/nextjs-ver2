@@ -3,10 +3,10 @@ import PrimaryContent from "@/common/components/PrimaryContent"
 import { useRouter } from "next/router"
 
 import image from '@/common/images/thumbs/single/single-01.jpg'
-import CommentPost from "@/common/components/CommentPost"
 import { useState } from "react"
-import { MainArticle } from "@/modules/articles/PostPagination"
+import { MainArticle } from "@/modules/articles/ArticlesModule"
 import { GetServerSideProps } from "next"
+import ArticleComment from "@/common/components/ArticleComment"
 
 interface HomeProps {
     article: MainArticle;
@@ -52,7 +52,7 @@ const StandardPost = (data: HomeProps) => {
                     </div>
                     <PageNav />
                 </div>
-                <CommentPost />
+                <ArticleComment />
             </section >
         </>
     )

@@ -1,11 +1,11 @@
 import Pagination from "@/common/components/Pagination";
+import { ArticlesPagination } from "@/modules/articles/ArticlesModule";
 import GridArticle from "@/modules/GridArticle";
-import { PostPagination } from "@/modules/posts/PostPagination";
 import { GetServerSideProps } from "next";
 import { useEffect, useState } from "react";
 
 interface HomeProps {
-  initialPosts: PostPagination;
+  initialPosts: ArticlesPagination;
   search: string;
 }
 
@@ -18,7 +18,7 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async (context)
   const response = await fetch(`${baseUrl}/api/categories/?page=${page}&category=${category}`,
     { cache: 'no-cache' }
   );
-  const data: PostPagination = await response.json();
+  const data: ArticlesPagination = await response.json();
 
   let x: HomeProps = {
     initialPosts: data,
@@ -29,7 +29,7 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async (context)
 };
 
 const Category = ({initialPosts, search}: HomeProps) => {
-  const [posts, setPosts] = useState<PostPagination>(
+  const [posts, setPosts] = useState<ArticlesPagination>(
     initialPosts
   );
   const [category] = useState<string>(search || '');

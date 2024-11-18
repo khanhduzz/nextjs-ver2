@@ -1,7 +1,5 @@
-import {
-  MainArticle,
-  fakeArticle,
-} from "@/modules/articles/PostPagination";
+import { MainArticle } from "@/modules/articles/ArticlesModule";
+import { articleData } from "@/modules/articles/Data";
 import { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {
@@ -21,7 +19,7 @@ export default function handler(
         return res.status(404).json({ message: "Article not found" });
       }
 
-      const filteredPosts = fakeArticle.filter(
+      const filteredPosts = articleData.filter(
         (post) => (post.articleId ?? 0) === Number(id)
       );
 

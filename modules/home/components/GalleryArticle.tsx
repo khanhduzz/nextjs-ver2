@@ -1,6 +1,5 @@
-import { MainArticle } from "@/modules/articles/PostPagination"
+import { MainArticle } from "@/modules/articles/ArticlesModule"
 import Image from 'next/image'
-import Link from "next/link"
 
 const GalleryArticle = (article: MainArticle) => {
     

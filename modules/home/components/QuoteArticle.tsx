@@ -1,4 +1,4 @@
-import { MainArticle } from "@/modules/articles/PostPagination"
+import { MainArticle } from "@/modules/articles/ArticlesModule"
 
 const QuoteArticle = (article: MainArticle) => {
     return (

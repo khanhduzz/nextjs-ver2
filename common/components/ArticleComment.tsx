@@ -5,7 +5,7 @@ import image2 from '@/common/images/avatars/user-02.jpg'
 import image3 from '@/common/images/avatars/user-03.jpg'
 import image4 from '@/common/images/avatars/user-04.jpg'
 
-const Comment = () => {
+const ArticleComment = () => {
     return (
         <>
             <div className="comments-wrap">
@@ -136,4 +136,4 @@ const Comment = () => {
     )
 }
 
-export default Comment
+export default ArticleComment

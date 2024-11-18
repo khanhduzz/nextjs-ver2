@@ -1,26 +1,4 @@
-export type PostPagination = {
-  message: string;
-  data?: MainArticle[];
-  currentPage?: number;
-  totalPages?: number;
-};
-
-export type MainArticle = {
-  articleId?: number;
-  name: string;
-  type: "standard" | "video" | "audio" | "gallery" | "quote" | "link";
-  description: string;
-  imageUrl?: string[];
-  mediaUrl?: string;
-  imageName?: string;
-  quote?: string;
-  articleCategories?: ArticleCategory[];
-};
-
-type ArticleCategory = {
-  title: string;
-  link: string;
-};
+import { MainArticle } from "./ArticlesModule";
 
 import imageProp1 from "@/common/images/thumbs/shutterbug.jpg";
 import imageProp2 from "@/common/images/thumbs/usaf-rocket.jpg";
@@ -35,7 +13,7 @@ import imageGallery3 from "@/common/images/thumbs/gallery/work3.jpg";
 import imagesStandard1 from '@/common/images/thumbs/diagonal-building.jpg'
 import imagesStandard2 from '@/common/images/thumbs/ferris-wheel.jpg'
 
-export let fakeArticle: MainArticle[] = [
+export let articleData: MainArticle[] = [
   {
     articleId: 1,
     name: "Photography Skills Can Improve Your Graphic Design",

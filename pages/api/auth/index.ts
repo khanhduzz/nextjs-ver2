@@ -7,18 +7,6 @@ export default function handler(
   res: NextApiResponse<AuthenticationModal>
 ) {
   if (req.method === "GET") {
-    // const { username, password } = req.body;
-    // console.log("Request body: ", req.body);
-    // console.log("Request username: ", username);
-    // if (username && password && username === "admin" && password === 'password') {
-    //   return res.status(200).json({
-    //     message: "User information retrieved successfully",
-    //     isAuthenticated: true,
-    //     user: {
-    //       username: username
-    //     },
-    //   });
-
     const cookies = req.headers.cookie ? parse(req.headers.cookie) : {};
     const sessionCookie = cookies.session;
     if (sessionCookie) {

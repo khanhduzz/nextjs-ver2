@@ -1,5 +1,3 @@
-import React from 'react'
-
 import imagePrimary from '@/common/images/shutterbug.jpg';
 import imageAuthor from '@/common/images/avatars/user-05.jpg'
 
