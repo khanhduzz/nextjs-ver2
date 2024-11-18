@@ -27,7 +27,7 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async (context)
     )
     const data: Data = await response.json();
 
-    return { props: { article: data.article } };
+    return { props: { article: data.article ?? null } };
 };
 
 const StandardPost = (data: HomeProps) => {
@@ -40,7 +40,7 @@ const StandardPost = (data: HomeProps) => {
             cache: 'no-cache'
         });
         const data = await response.json();
-        setArticle(data.article);
+        setArticle(data.article ?? null);
         
     };
 
@@ -67,7 +67,7 @@ const StandardPost = (data: HomeProps) => {
                             <article className="brick entry animate-this">
                                 <div className="">
                                     <div className="entry-header w-full">
-                                        <h1 className="entry-title">Nothing to show</h1>
+                                        <h1 className="entry-title">Not found</h1>
                                     </div>
                                 </div>
                             </article>

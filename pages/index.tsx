@@ -18,7 +18,7 @@ export const getServerSideProps: GetServerSideProps<HomeProps> = async (context)
   );
   const data: ArticlesPagination = await response.json();
 
-  return { props: { initialPosts: data } };
+  return { props: { initialPosts: data ?? null } };
 };
 
 export default function Home(
@@ -37,7 +37,7 @@ export default function Home(
       cache: 'no-cache'
     });
     const data = await response.json();
-    setPosts(data);
+    setPosts(data ?? null);
   };
 
   const handlePageChange = (newPage: number) => {
