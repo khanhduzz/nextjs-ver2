@@ -52,15 +52,15 @@ A mini website to learn how to create a website with NextJs
 #### General:
 - Pagination, Filter with category, type of articles
 #### Anonymous user:
-- View all articles in homepage, filter by category, send contact to the admin in the contact page
+- View all articles in homepage, filter by category, filter by type (video, audio,...), send contact to the admin in the contact page
 - Search articles based on the articles name.
 #### Admin:
-- Login with admin account and able to see the user's contact in `Requests` page.
+- Login with admin account and able to see the user's contact in `Contacts` page.
 - Search articles based on the articles name.
 
 ## Workflow:
 #### Articles load and pagination:
-_This website does not use database, the hardcode data is using._
+_This website does not use database, the hardcode data is using instead._
 - Article use api in `pages/api/articles/` (for both single article or articles with pagination) to fetch data in `/modules/articles/Data.tsx`.
 #### Login:
 - User go to `login page` -> login with default account
@@ -76,5 +76,6 @@ _This website does not use database, the hardcode data is using._
 - Single article: `localhost:3000/articles/[id]`
 - Category: `localhost:3000/category/`
 - Specific category: `localhost:3000/category/[slug]`
+- Blog: `localhost:3000/blog/`
 - Contact for user: `localhost:3000/contact/`
 - View user's contacts: `locahost:3000/admin/contacts/`
