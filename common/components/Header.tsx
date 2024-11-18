@@ -53,7 +53,7 @@ const Header = ({ children }: Props, searchData: HomeProps) => {
                                     <li><a href="/category/branding">Branding</a></li>
                                 </ul>
                             </li>
-                            <li className={`has-children ${pathname.startsWith('/standard') || pathname.startsWith('/video') || pathname.startsWith('/audio') || pathname.startsWith('/gallery') ? 'current' : ''}`}>
+                            <li className={`has-children ${pathname.startsWith('/blog') ? 'current' : ''}`}>
                                 <a href="/blog" title="">Blog</a>
                                 <ul className="sub-menu">
                                     <li><a href="/blog/video">Video Post</a></li>
