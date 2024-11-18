@@ -1,4 +1,4 @@
-import router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 type AuthenticateUser = {
@@ -44,7 +44,6 @@ const AuthenticationInformation = () => {
                 setAuthenticateDto({ isAuthenticated: false, user: { username: "" } });
                 sessionStorage.removeItem("user")
                 window.location.href = "/";
-                // router.push("/");
             } else {
                 console.error("Error logging out");
             }
@@ -59,7 +58,7 @@ const AuthenticationInformation = () => {
                 <>
                     <li className={isCurrent('/admin/contacts') ? 'current' : ''}><a href="/admin/contacts">Contacts</a></li>
                     <li><a onClick={() => handleLogout()} style={{ cursor: "pointer" }}>Logout</a></li>
-                    <li><p>Welcome:{' ' + authenticateDto.user.username}</p></li>
+                    <p>Welcome:{' ' + authenticateDto.user.username}</p>
                 </>
             ) : (
                 <>

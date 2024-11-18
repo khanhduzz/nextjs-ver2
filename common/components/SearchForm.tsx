@@ -7,20 +7,6 @@ interface HomeProps {
     baseUrl: string;
 }
 
-export const getServerSideProps: GetServerSideProps<{ searchData: HomeProps }> = async (context) => {
-    const page = Number(context.query.page) || 1;
-    const search = context.query.search || "";
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-
-    const data: HomeProps = {
-        search: Array.isArray(search) ? search[0] : search,
-        page: page,
-        baseUrl: baseUrl,
-    };
-
-    return { props: { searchData: data } };
-};
-
 const SearchForm = ({ searchData }: { searchData: HomeProps }) => {
     const [searchTerm, setSearchTerm] = useState(searchData ? searchData.search : '');
     const [searchURL, setSearchUrl] = useState(searchData ? searchData.baseUrl : 'http://localhost:3000');
