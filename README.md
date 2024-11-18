@@ -17,8 +17,8 @@ A mini website to learn how to create a website with NextJs
 ```
 .
 ├── commons/
-│   ├── components
-│   └── images
+│   ├── components/
+│   └── images/
 ├── modules/
 │   ├── articles/
 │   ├── authentication/
@@ -29,14 +29,11 @@ A mini website to learn how to create a website with NextJs
 │   ├── admin/
 │   ├── api/
 │   ├── articles/
-│   ├── audio/
+│   ├── blog/
 │   ├── category/
 │   ├── contact/
-│   ├── fonts/
-│   ├── gallery/
 │   ├── login/
 │   ├── style/
-│   ├── video/
 │   ├── _app.tsx
 │   ├── _document.tsx
 │   └── index.tsx
@@ -52,15 +49,19 @@ A mini website to learn how to create a website with NextJs
   password: password
 ```
 ## Functionality
+#### General:
+- Pagination, Filter with category, type of articles
 #### Anonymous user:
 - View all articles in homepage, filter by category, send contact to the admin in the contact page
+- Search articles based on the articles name.
 #### Admin:
 - Login with admin account and able to see the user's contact in `Requests` page.
+- Search articles based on the articles name.
 
 ## Workflow:
 #### Articles load and pagination:
 _This website does not use database, the hardcode data is using._
-- Article use api in `pages/api/articles/` (for both single article or articles with pagination) to fetch data in `/modules/articles/PostPagination.tsx` 
+- Article use api in `pages/api/articles/` (for both single article or articles with pagination) to fetch data in `/modules/articles/Data.tsx`.
 #### Login:
 - User go to `login page` -> login with default account
 - `Login page` -> request to server -> `POST api/auth/login/` -> confirm infomation -> save to `Session cookie` with expire time is 3600s.
@@ -73,7 +74,7 @@ _This website does not use database, the hardcode data is using._
 ## Page url:
 - Homepage: `localhost:3000`
 - Single article: `localhost:3000/articles/[id]`
-- Category: `localhost:3000/categories/`
-- Specific category: `localhost:3000/categories/[slug]`
+- Category: `localhost:3000/category/`
+- Specific category: `localhost:3000/category/[slug]`
 - Contact for user: `localhost:3000/contact/`
 - View user's contacts: `locahost:3000/admin/contacts/`
