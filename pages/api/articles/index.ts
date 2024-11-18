@@ -1,8 +1,8 @@
-import { ArticlesPagination } from "@/modules/articles/ArticlesModule";
+import { ArticlesPagination } from "@/modules/articles/components/ArticlesModule";
 import { NextApiRequest, NextApiResponse } from "next";
-import { articleData } from "@/modules/articles/Data";
+import { articleData } from "@/modules/articles/components/Data";
 
-const POSTS_PER_PAGE = 20;
+const POSTS_PER_PAGE = 10;
 
 export default function handler(
   req: NextApiRequest,

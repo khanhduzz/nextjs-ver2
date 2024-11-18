@@ -1,4 +1,4 @@
-import { MainArticle } from '@/modules/articles/ArticlesModule'
+import { MainArticle } from '@/modules/articles/components/ArticlesModule'
 
 const FormatLinkArticle = (article: MainArticle) => {
     return (

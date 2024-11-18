@@ -5,7 +5,7 @@ import imageProp2 from "@/common/images/thumbs/usaf-rocket.jpg";
 import imageProp3 from "@/common/images/thumbs/diagonal-pattern.jpg";
 import imageProp4 from "@/common/images/thumbs/lighthouse.jpg";
 import imageProp5 from "@/common/images/thumbs/liberty.jpg";
-import audioImage1 from "@/common/images/thumbs/concert.jpg";
+import audioImage1 from "@/common/images/thumbs/single/single-02.jpg";
 import video1 from "@/common/images/thumbs/ottawa-bokeh.jpg";
 import imageGallery1 from "@/common/images/thumbs/gallery/work1.jpg";
 import imageGallery2 from "@/common/images/thumbs/gallery/work2.jpg";

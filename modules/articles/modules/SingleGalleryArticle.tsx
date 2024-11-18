@@ -1,12 +1,11 @@
-import ArticleComment from '@/common/components/ArticleComment'
-import PageNav from '@/common/components/PageNav'
 import PrimaryContent from '@/common/components/PrimaryContent'
+import { MainArticle } from '../components/ArticlesModule'
 
 import image1 from '@/common/images/thumbs/single/gallery/single-gallery-01.jpg'
 import image2 from '@/common/images/thumbs/single/gallery/single-gallery-02.jpg'
 import image3 from '@/common/images/thumbs/single/gallery/single-gallery-03.jpg'
 
-const GalleryPost = () => {
+const SingleGalleryArticle = (article: MainArticle) => {
     return (
         <>
             <section id="content-wrap" className="blog-single">
@@ -31,12 +30,10 @@ const GalleryPost = () => {
                             <PrimaryContent />
                         </article>
                     </div>
-                    <PageNav />
                 </div>
-                <ArticleComment />
             </section >
         </>
     )
 }
 
-export default GalleryPost
+export default SingleGalleryArticle

@@ -1,5 +1,5 @@
-import { Article, AudioArticle, FormatLinkArticle, FormatVideoArticle, GalleryArticle, QuoteArticle } from "./home/components"
-import { MainArticle, ArticlesPagination } from "./articles/ArticlesModule"
+import { Article, AudioArticle, FormatLinkArticle, FormatVideoArticle, GalleryArticle, QuoteArticle } from "../components"
+import { MainArticle, ArticlesPagination } from "../../articles/components/ArticlesModule"
 
 type GridArticleProps = {
     posts: ArticlesPagination

@@ -21,3 +21,4 @@ type ArticleCategory = {
   title: string;
   link: string;
 };
+

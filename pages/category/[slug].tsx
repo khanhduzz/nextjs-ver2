@@ -1,6 +1,6 @@
 import Pagination from "@/common/components/Pagination";
-import { ArticlesPagination } from "@/modules/articles/ArticlesModule";
-import GridArticle from "@/modules/GridArticle";
+import { ArticlesPagination } from "@/modules/articles/components/ArticlesModule";
+import GridArticle from "@/modules/home/modules/GridArticle";
 import { GetServerSideProps } from "next";
 import { useEffect, useState } from "react";
 

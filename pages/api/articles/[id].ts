@@ -1,5 +1,5 @@
-import { MainArticle } from "@/modules/articles/ArticlesModule";
-import { articleData } from "@/modules/articles/Data";
+import { MainArticle } from "@/modules/articles/components/ArticlesModule";
+import { articleData } from "@/modules/articles/components/Data";
 import { NextApiRequest, NextApiResponse } from "next";
 
 type Data = {

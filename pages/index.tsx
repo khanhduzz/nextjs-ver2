@@ -1,9 +1,9 @@
 import { Slides } from "@/modules/home/components";
 import { useEffect, useState } from "react";
-import { ArticlesPagination } from "@/modules/articles/ArticlesModule";
+import { ArticlesPagination } from "@/modules/articles/components/ArticlesModule";
 import { GetServerSideProps } from "next";
 import Pagination from "@/common/components/Pagination";
-import GridArticle from "@/modules/GridArticle";
+import GridArticle from "@/modules/home/modules/GridArticle";
 
 interface HomeProps {
   initialPosts: ArticlesPagination;

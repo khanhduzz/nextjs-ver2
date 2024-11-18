@@ -1,5 +1,5 @@
-import { ArticlesPagination } from "@/modules/articles/ArticlesModule";
-import { articleData } from "@/modules/articles/Data";
+import { ArticlesPagination } from "@/modules/articles/components/ArticlesModule";
+import { articleData } from "@/modules/articles/components/Data";
 import { NextApiRequest, NextApiResponse } from "next";
 
 const POSTS_PER_PAGE = 10;

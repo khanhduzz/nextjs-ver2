@@ -1,4 +1,4 @@
-import { MainArticle } from '@/modules/articles/ArticlesModule'
+import { MainArticle } from '@/modules/articles/components/ArticlesModule'
 import Image from 'next/image'
 
 const FormatVideoArticle = (article: MainArticle) => {
