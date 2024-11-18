@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import SearchForm from "./SearchForm";
 
 type Props = {
     children: React.ReactNode;
@@ -32,12 +33,12 @@ const Header = ({ children }: Props) => {
                                 </ul>
                             </li>
                             <li className={`has-children ${pathname.startsWith('/standard') || pathname.startsWith('/video') || pathname.startsWith('/audio') || pathname.startsWith('/gallery') ? 'current' : ''}`}>
-                                <a href="/standard/1" title="">Blog</a>
+                                <a href="/blog" title="">Blog</a>
                                 <ul className="sub-menu">
-                                    <li><a href="/video/1">Video Post</a></li>
-                                    <li><a href="/audio/1">Audio Post</a></li>
-                                    <li><a href="/gallery/1">Gallery Post</a></li>
-                                    <li><a href="/standard/1">Standard Post</a></li>
+                                    <li><a href="/blog/video">Video Post</a></li>
+                                    <li><a href="/blog/audio">Audio Post</a></li>
+                                    <li><a href="/blog/gallery">Gallery Post</a></li>
+                                    <li><a href="/blog/standard">Standard Post</a></li>
                                 </ul>
                             </li>
                             <li className={isCurrent('/style') ? 'current' : ''}><a href="/style" title="">Styles</a></li>
@@ -46,14 +47,7 @@ const Header = ({ children }: Props) => {
                         </ul>
                     </nav>
                     <div className="search-wrap">
-                        <form role="search" method="get" className="search-form" action="#">
-                            <label>
-                                <span className="hide-content">Search for:</span>
-                                <input type="search" className="search-field" placeholder="Type Your Keywords" defaultValue="" name="s" title="Search for:" />
-                            </label>
-                            <input type="submit" className="search-submit" defaultValue="Search" />
-                        </form>
-                        <a href="#" id="close-search" className="close-btn">Close</a>
+                        <SearchForm />
                     </div>
 
                     <div className="triggers">

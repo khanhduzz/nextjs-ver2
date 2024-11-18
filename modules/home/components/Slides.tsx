@@ -20,7 +20,7 @@ const Slides = () => {
                                             <li>September 06, 2016</li>
                                             <li><a href="#" >Naruto Uzumaki</a></li>
                                         </ul>
-                                        <h1 className="slide-title"><a href="single-standard.html" title="">Minimalism Never Goes Out of Style</a></h1>
+                                        <h1 className="slide-title"><a href="/" title="">Minimalism Never Goes Out of Style</a></h1>
                                     </div>
                                 </div>
                             </li>
@@ -33,7 +33,7 @@ const Slides = () => {
                                             <li>August 29, 2016</li>
                                             <li><a href="#">Sasuke Uchiha</a></li>
                                         </ul>
-                                        <h1 className="slide-title"><a href="single-standard.html" title="">Enhancing Your Designs with Negative Space</a></h1>
+                                        <h1 className="slide-title"><a href="/" title="">Enhancing Your Designs with Negative Space</a></h1>
                                     </div>
                                 </div>
                             </li>
@@ -46,7 +46,7 @@ const Slides = () => {
                                             <li>August 27, 2016</li>
                                             <li><a href="#" className="author">Naruto Uzumaki</a></li>
                                         </ul>
-                                        <h1 className="slide-title"><a href="single-standard.html" title="">Music Album Cover Designs for Inspiration</a></h1>
+                                        <h1 className="slide-title"><a href="/" title="">Music Album Cover Designs for Inspiration</a></h1>
                                     </div>
                                 </div>
                             </li>

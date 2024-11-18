@@ -11,6 +11,7 @@ export type MainArticle = {
   type: "standard" | "video" | "audio" | "gallery" | "quote" | "link";
   description: string;
   imageUrl?: string[];
+  backgroundImage?: string[];
   mediaUrl?: string;
   imageName?: string;
   quote?: string;

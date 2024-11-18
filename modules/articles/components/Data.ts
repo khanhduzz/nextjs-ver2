@@ -6,10 +6,14 @@ import imageProp3 from "@/common/images/thumbs/diagonal-pattern.jpg";
 import imageProp4 from "@/common/images/thumbs/lighthouse.jpg";
 import imageProp5 from "@/common/images/thumbs/liberty.jpg";
 import audioImage1 from "@/common/images/thumbs/single/single-02.jpg";
+import audioBgImage1 from "@/common/images/thumbs/single/single-02.jpg"
 import video1 from "@/common/images/thumbs/ottawa-bokeh.jpg";
 import imageGallery1 from "@/common/images/thumbs/gallery/work1.jpg";
 import imageGallery2 from "@/common/images/thumbs/gallery/work2.jpg";
 import imageGallery3 from "@/common/images/thumbs/gallery/work3.jpg";
+import galleryBg1 from "@/common/images/thumbs/single/gallery/single-gallery-01.jpg"
+import galleryBg2 from "@/common/images/thumbs/single/gallery/single-gallery-02.jpg"
+import galleryBg3 from "@/common/images/thumbs/single/gallery/single-gallery-03.jpg"
 import imagesStandard1 from '@/common/images/thumbs/diagonal-building.jpg'
 import imagesStandard2 from '@/common/images/thumbs/ferris-wheel.jpg'
 
@@ -88,6 +92,7 @@ export let articleData: MainArticle[] = [
     description:
       "Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo...",
     imageUrl: [audioImage1.src],
+    backgroundImage: [audioBgImage1.src],
     mediaUrl: "/media/AirReview-Landmarks-02-ChasingCorporate.mp3",
     imageName: "Concert",
     articleCategories: [
@@ -124,6 +129,7 @@ export let articleData: MainArticle[] = [
     description:
       "Lorem ipsum Sed eiusmod esse aliqua sed incididunt aliqua incididunt mollit id et sit proident dolor nulla sed commodo...",
     imageUrl: [imageGallery1.src, imageGallery2.src, imageGallery3.src],
+    backgroundImage: [galleryBg1.src, galleryBg2.src, galleryBg3.src],
     mediaUrl:
       "http://player.vimeo.com/video/14592941?title=0&amp;byline=0&amp;portrait=0&amp;color=F64B39",
     articleCategories: [

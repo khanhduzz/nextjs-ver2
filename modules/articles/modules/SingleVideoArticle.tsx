@@ -13,7 +13,7 @@ const SingleVideoArticle = (article: MainArticle) => {
                                     <iframe src={article.mediaUrl} width="640" height="360" allowFullScreen={true}></iframe>
                                 </div>
                             </div>
-                            <PrimaryContent />
+                            <PrimaryContent {...article}/>
                         </article>
                     </div>
                 </div>

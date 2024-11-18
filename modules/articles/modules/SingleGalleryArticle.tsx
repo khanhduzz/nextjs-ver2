@@ -15,19 +15,15 @@ const SingleGalleryArticle = (article: MainArticle) => {
                             <div className="content-media">
                                 <div className="post-slider flexslider">
                                     <ul className="slides">
-                                        <li>
-                                            <img src={image1.src} />
-                                        </li>
-                                        <li>
-                                            <img src={image2.src} />
-                                        </li>
-                                        <li>
-                                            <img src={image3.src} />
-                                        </li>
+                                        {article.backgroundImage?.map((image, index) => (
+                                            <li>
+                                                <img src={image} />
+                                            </li>
+                                        ))}
                                     </ul>
                                 </div>
                             </div>
-                            <PrimaryContent />
+                            <PrimaryContent {...article}/>
                         </article>
                     </div>
                 </div>

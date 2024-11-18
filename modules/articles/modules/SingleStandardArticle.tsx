@@ -14,7 +14,7 @@ const SingleStandardArticle = (article: MainArticle) => {
                         ))}
                     </div>
                 </div>
-                <PrimaryContent />
+                <PrimaryContent {...article}/>
             </article>
         </>
     )

@@ -7,7 +7,7 @@ const SingleAudioArticle = (article: MainArticle) => {
             <article className="format-audio">
                 <div className="content-media">
                     <div className="post-thumb">
-                        {article.imageUrl?.map((image, index) => (
+                        {article.backgroundImage?.map((image, index) => (
                             <img src={image} />
                         ))}
                     </div>
@@ -20,7 +20,7 @@ const SingleAudioArticle = (article: MainArticle) => {
                         ></audio>
                     </div>
                 </div>
-                <PrimaryContent />
+                <PrimaryContent {...article}/>
             </article>
         </>
     )

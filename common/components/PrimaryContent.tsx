@@ -1,14 +1,19 @@
 import imagePrimary from '@/common/images/shutterbug.jpg';
 import imageAuthor from '@/common/images/avatars/user-05.jpg'
+import { MainArticle } from '@/modules/articles/components/ArticlesModule';
 
-const PrimaryContent = () => {
+const PrimaryContent = (article: MainArticle) => {
     return (
         <>
             <div className="primary-content">
-                <h1 className="page-title">Hey, This Is A Standard Format Post.</h1>
+                <h1 className="page-title">{article ? article.name : "Hey, This Is A Standard Format Post."}</h1>
                 <ul className="entry-meta">
                     <li className="date">September 06, 2016</li>
-                    <li className="cat"><a href="">Wordpress</a><a href="">Design</a></li>
+                    <li className="cat">
+                        {article.articleCategories?.map((link, index) => (
+                            <a key={index} href={`/category/${link.title}` ?? '#'}>{link.title}</a>
+                        ))}
+                    </li>
                 </ul>
                 <p className="lead">Duis ex ad cupidatat tempor Excepteur cillum cupidatat fugiat nostrud cupidatat dolor sunt sint sit nisi est eu exercitation incididunt adipisicing veniam velit id fugiat enim mollit amet anim veniam dolor dolor irure velit commodo cillum sit nulla ullamco magna amet magna cupidatat qui labore cillum sit in tempor veniam consequat non laborum adipisicing aliqua ea nisi sint.</p>
                 <p>Duis ex ad cupidatat tempor Excepteur cillum cupidatat fugiat nostrud cupidatat dolor sunt sint sit nisi est eu exercitation incididunt adipisicing veniam velit id fugiat enim mollit amet anim veniam dolor dolor irure velit commodo cillum sit nulla ullamco magna amet magna cupidatat qui labore cillum sit in tempor veniam consequat non laborum adipisicing aliqua ea nisi sint ut quis proident ullamco ut dolore culpa occaecat ut laboris in sit minim cupidatat ut dolor voluptate enim veniam consequat occaecat fugiat in adipisicing in amet Ut nulla nisi non ut enim aliqua laborum mollit quis nostrud sed sed.
@@ -31,7 +36,7 @@ const PrimaryContent = () => {
     border: 1px solid #E1E1E1;
     border-radius: 3px;
 }`}
-</code></pre>
+                </code></pre>
                 <p>Odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa.</p>
                 <ul>
                     <li>Donec nulla non metus auctor fringilla.
